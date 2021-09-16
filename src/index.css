@@ -5,7 +5,9 @@
   --secondary: #4e4e4e;
   --error: #ff4a4a;
 }
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* base styles & title */
 body{
   font-family: "Noto Serif";
