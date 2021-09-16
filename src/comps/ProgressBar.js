@@ -5,11 +5,11 @@ import useStorage from '../hooks/useStorage';
 const ProgressBar = ({ file, setFile }) => {
   const { progress, url } = useStorage(file);
 
-//   useEffect(() => {
-//     if (url) {
-//       setFile(null);
-//     }
-//   }, [url, setFile]);
+  useEffect(() => {
+    if (url) {
+      setFile(null);
+    }
+  }, [url, setFile]);
     console.log(progress, url);
   return (
     // <motion.div className="progress-bar"
@@ -17,7 +17,7 @@ const ProgressBar = ({ file, setFile }) => {
     //   animate={{ width: progress + '%' }}
     // ></motion.div>
 
-    <p>Progress</p>
+    <div className='bg-gray-600 h-2' style={{ width : progress + '%' }}></div>
   );
 } 
 

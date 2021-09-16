@@ -1,5 +1,7 @@
 /* eslint-disable default-case */
 import { useState, useEffect } from "react";
+import { collection, addDoc, Timestamp } from "firebase/firestore"; 
+
 import {
   getStorage,
   ref,
@@ -56,9 +58,20 @@ const useStorage = (file) => {
       () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        getDownloadURL(uploadTask.snapshot.ref).then( async(downloadURL) => {
           console.log("File available at", downloadURL);
-          setUrl(downloadURL);
+          
+          try {
+            const docRef = await addDoc(collection(db, "images"), {
+              url : downloadURL,
+              
+              createdAt: Timestamp.fromDate(new Date()).toDate()
+            });
+            console.log("Document written with ID: ", docRef.id);
+            setUrl(downloadURL);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
         });
       }
     );

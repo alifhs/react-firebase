@@ -21,10 +21,14 @@ const UploadForm = () => {
 
   return (
     <form>
-      <label>
-        <input type="file" onChange={handleChange} />
-        <span>+</span>
+      <label className="block flex flex-col items-center justify-center mt-14 ">
+        <input hidden type="file" onChange={handleChange} />
+        <div className="rounded-full bg-red-200 w-14 h-14 text-4xl flex justify-center items-center ">+</div>
+      
+        <label className="block mt-6" htmlFor="">Click to Upload</label>
       </label>
+
+    
       <div className="output">
         { error && <div className="error">{ error }</div>}
         { file && <div>{ file.name }</div> }
