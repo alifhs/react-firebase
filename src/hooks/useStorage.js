@@ -15,7 +15,7 @@ const useStorage = (file) => {
   const [url, setUrl] = useState(null);
 
   useEffect(() => {
-    // references
+    // references 
     const storageRef = ref(storage, file.name);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
